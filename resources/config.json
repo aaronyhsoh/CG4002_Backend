@@ -1,0 +1,8 @@
+{
+  "MONGO": {
+    "URL": "mongodb://localhost:27017/dancedb?replicaSet=rs0",
+    "DB": [
+      "dancedb"
+    ]
+  }
+}
