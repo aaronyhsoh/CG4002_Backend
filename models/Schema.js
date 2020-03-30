@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const mongooseSchema = mongoose.Schema;
 
 const SensorSchema = new mongooseSchema({
-  sensor: String,
   x: { type: Number },
   y: { type: Number },
   z: { type: Number }
@@ -11,10 +10,7 @@ const SensorSchema = new mongooseSchema({
 const Schema = new mongooseSchema({
   data: {
     dancer_id: String,
-    sensor_data: [
-      SensorSchema,
-      SensorSchema
-    ],
+    sensor_data: { type: SensorSchema},
     emg_data: {
       value: { type: Number}
     },
@@ -22,10 +18,7 @@ const Schema = new mongooseSchema({
       dance_move: { type: Number},
       position: { type: Number}
     },
-    gyroscope_data: [
-      SensorSchema,
-      SensorSchema
-    ],
+    gyroscope_data: { type: SensorSchema},
     timestamp: String
   }
 });
