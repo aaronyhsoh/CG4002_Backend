@@ -1,0 +1,62 @@
+Corporate action
+- coupon payments
+
+
+
+workflow
+1. user subscribes to green bond (/submitTx) submit tx to swift and add transaction into queue
+
+2. subscribe to notification service based on uetr using webhook
+
+3. Payment done on swift and status is updated using swift SLVP (SWIFT tracker low value payments) API 
+
+4. Track payment using (uetr swift endpoint)
+	- using scheduler at 10s interval until transaction is completed?
+	- polling?
+
+5. Once payment goes through, send notification to webhook url (custom node endpoint to receive notification)
+
+6. notification triggers workflow to transfer bond (smart contract) to subscriber
+
+7. issuer can trigger coupon payments by calling function in smart contract to disburse payment to holders of the bond.
+   payment details (calculated in smart contract)
+
+8. coupon payments (also using SLVP API)
+
+9. check wallet balances using /queryContract
+
+10. check kyc and reject transaction 
+
+
+Bond smart contract
+-constructor creates fixed amount
+-additional issuance?
+-saves list of wallet address (holders)
+-calculation for coupon payment based on number of units held
+-transfer to wallet address
+
+
+
+
+
+BLOCKCHAIN TASKS
+create bond/uetr smart contract (blockchain) (naresh / niveetha)
+create scheduler to poll for notification (blockchain)
+create service to handle transfer of bond to investor (blockchain)
+create service and endpoint to query for archived swift messages in the blockchain (blockchain) 
+
+SWIFT TASKS
+investigate subscription and notification api (swift)
+investigate swift transaction and update transaction api (swift)
+investigate swift uetr
+investigate swift check BIC, IBAN endpoints.
+
+
+POSTMAN APIS
+subscribe to bond
+check transaction status
+check wallet balance
+get swift messages from blockchain
+trigger coupon payment from issuer
+
+
